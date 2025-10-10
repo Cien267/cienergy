@@ -1,0 +1,64 @@
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  background: #f6efe8;
+}
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  display: none;
+}
+.modal.active {
+  display: flex;
+}
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+.floating-text {
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  color: #706d54;
+  pointer-events: none;
+  animation: floatUp 1s ease-out forwards;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.floating-text-iced {
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  color: #38bdf8;
+  pointer-events: none;
+  animation: floatUp 1s ease-out forwards;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-40px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-80px) scale(0.8);
+  }
+}

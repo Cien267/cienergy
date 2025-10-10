@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Cienergy | Cà Phê Giao Tận Nhà Buổi Sáng - Cà Phê Rang Mộc Nguyên Chất
+    </title>
+    <meta
+      name="description"
+      content="Không cần phải dừng lại ở các xe cà phê take-away, giờ đây cà phê yêu thích của bạn sẽ được giao thẳng tận tay, đúng khung giờ buổi sáng trước khi bạn đi làm. Cà phê rang mộc nguyên chất, không tẩm ướp, pha trộn, đậm đà, sánh mịn và thơm nồng – giữ trọn hương vị tự nhiên ngay tại nhà. Đặt online ngay!"
+    />
+    <link rel="canonical" href="https://www.cienergy.com/" />
+    <meta
+      property="og:title"
+      content="Cà phê giao tận nhà | Hạt Cà Phê Rang Mộc"
+    />
+    <meta
+      property="og:description"
+      content="Không cần phải dừng lại ở các xe cà phê take-away, giờ đây cà phê yêu thích của bạn sẽ được giao thẳng tận tay, đúng khung giờ buổi sáng trước khi bạn đi làm. Cà phê rang mộc nguyên chất, không tẩm ướp, pha trộn, đậm đà, sánh mịn và thơm nồng – giữ trọn hương vị tự nhiên ngay tại nhà. Đặt online ngay!"
+    />
+    <meta
+      property="og:image"
+      content="https://www.cienergy.com/public/images/logo.png"
+    />
+    <meta property="og:url" content="https://www.cienergy.com/" />
+    <meta property="og:type" content="website" />
+    <meta
+      name="keywords"
+      content="cà phê giao tận nhà, cà phê rang mộc, coffee delivery Hà Nội, cà phê sáng, đặt cà phê online"
+    />
+
+    <link
+      rel="shortcut icon"
+      href="/public/images/logo.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/public/images/logo.png"
+    />
+    <link rel="apple-touch-icon" href="/public/images/logo.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "coffee-bg": "#F6EFE8",
+              "coffee-dark": "#706D54",
+              "coffee-accent": "#C9B194",
+
+              "cf-darkest": "#706D54",
+              "cf-darker": "#A08963",
+              "cf-medium": "#C9B194",
+              "cf-light": "#DBDBDB",
+            },
+            boxShadow: {
+              custom: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+            },
+            fontFamily: {
+              special: ['"Special Elite"', "cursive"],
+            },
+          },
+        },
+      }
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Cienergy",
+        "image": "https://www.cienergy.com/public/images/logo.png",
+        "description": "Dịch vụ cà phê giao tận nhà buổi sáng. Cà phê rang mộc nguyên chất, không tẩm ướp, giao nhanh đúng giờ.",
+        "url": "https://www.cienergy.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Hà Nội",
+          "addressCountry": "VN"
+        },
+        "telephone": "0866015505"
+      }
+    </script>
+  </head>
+  <body class="font-sans text-gray-900 pb-20">
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-white shadow-sm">
+      <div
+        class="flex items-center justify-start px-4 py-3 max-w-full mx-auto gap-2 relative"
+      >
+        <div class="flex items-center justify-between gap-1">
+          <img
+            src="./public/images/logo.png"
+            class="w-10 h-10"
+            alt="Cienergy - Cà phê giao tận nhà"
+            loading="lazy"
+          />
+          <h1
+            class="font-special text-2xl font-bold bg-gradient-to-r from-cf-darkest via-cf-darker to-cf-medium inline-block text-transparent bg-clip-text"
+          >
+            Cienergy
+          </h1>
+        </div>
+      </div>
+    </header>
+    <section class="text-center p-2">
+      <h2 class="text-2xl font-bold text-cf-darkest">Cà phê giao tận tay</h2>
+      <p class="max-w-xl mx-auto text-sm text-cf-darker mt-1">
+        Rang mộc nguyên chất, giao nhanh trước giờ làm.
+      </p>
+    </section>
+    <div
+      class="mt-2 bg-white border-2 border-solid border-gray-100 rounded-lg p-2 max-w-fit shadow-lg mx-auto"
+    >
+      <div class="flex items-center justify-center gap-4">
+        <!-- Nóng/Đá Toggle -->
+        <button
+          class="toggle-btn px-4 py-2 rounded text-base font-medium bg-cf-medium text-white"
+          data-temp="hot"
+        >
+          ☕ Nóng
+        </button>
+        <button
+          class="toggle-btn px-4 py-2 rounded text-base font-medium text-gray-600 hover:bg-gray-100"
+          data-temp="iced"
+        >
+          🧊 Đá
+        </button>
+      </div>
+    </div>
+
+    <!-- Menu Items -->
+    <div id="menuList" class="px-4 py-3 space-y-2 max-w-xl mx-auto">
+      <!-- Menu items will be injected here -->
+    </div>
+
+    <div
+      id="divider"
+      class="w-full border-2 border border-solid border-gray-300 h-1 border-dashed mx-auto max-w-2xl my-6 hidden"
+    ></div>
+
+    <!-- Mini Cart -->
+    <div class="px-4 mb-8">
+      <div
+        id="miniCart"
+        class="mx-auto mt-3 bg-white rounded-lg px-4 py-3 shadow-sm hidden max-w-xl"
+      >
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-bold text-base">Đơn hàng của bạn</h3>
+          <button
+            id="clearCart"
+            class="p-4 text-xs text-gray-500 font-medium hover:bg-gray-200 rounded-lg"
+          >
+            Xóa
+          </button>
+        </div>
+        <div id="cartItems" class="space-y-4"></div>
+      </div>
+    </div>
+
+    <!-- Sticky Cart Bar -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white shadow-custom z-40">
+      <div class="flex items-center justify-between px-4 py-3 max-w-xl mx-auto">
+        <div class="flex items-center gap-2 text-sm">
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+            />
+          </svg>
+          <span id="cartSummary" class="font-medium text-lg">0 cốc</span>
+        </div>
+        <button
+          id="checkoutBtn"
+          class="bg-cf-darkest text-white px-6 py-2 rounded-lg font-semibold text-base disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled
+        >
+          Đặt đơn
+        </button>
+      </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="modal items-end md:items-center">
+      <div
+        class="bg-white rounded-t-2xl w-full max-w-lg mx-auto p-6 slide-up"
+        style="max-height: 100vh; overflow-y: auto"
+      >
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold text-cf-darkest">Thông tin giao hàng</h2>
+          <button
+            id="closeCheckout"
+            class="text-3xl leading-none text-gray-400"
+          >
+            &times;
+          </button>
+        </div>
+
+        <form id="checkoutForm" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium mb-1.5"
+              >SĐT <span class="text-red-500">*</span></label
+            >
+            <input
+              type="tel"
+              id="phone"
+              inputmode="tel"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-coffee-accent"
+              placeholder="0912345678"
+              required
+            />
+            <p id="phoneError" class="text-sm text-red-500 hidden">
+              Số điện thoại không hợp lệ!
+            </p>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-1.5"
+              >Tên <span class="text-red-500">*</span></label
+            >
+            <input
+              type="text"
+              id="name"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-coffee-accent capitalize"
+              placeholder="Nguyen Van A"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-1.5"
+              >Địa chỉ <span class="text-red-500">*</span></label
+            >
+            <input
+              type="text"
+              id="address"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-coffee-accent"
+              placeholder="Số nhà, tên đường, phường..."
+              required
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-1.5"
+              >Thời gian giao hàng
+              <span
+                id="deliveryTimeNote"
+                class="text-sm font-normal text-gray-500"
+              ></span
+            ></label>
+            <select
+              id="timeSlot"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-coffee-accent"
+            >
+              <option value="asap">ASAP (15-30 phút)</option>
+              <option value="06:00">06:00 AM</option>
+              <option value="06:30">06:30 AM</option>
+              <option value="07:00">07:00 AM</option>
+              <option value="07:30">07:30 AM</option>
+              <option value="08:00">08:00 AM</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-1.5"
+              >Ghi chú
+              <span class="text-sm font-normal text-gray-500"
+                >(Tùy chọn)</span
+              ></label
+            >
+            <input
+              type="text"
+              id="notes"
+              maxlength="50"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-coffee-accent"
+              placeholder="vd: ít sữa, nhiều đá..."
+            />
+          </div>
+
+          <div class="flex items-start gap-2 py-2">
+            <input
+              type="checkbox"
+              id="confirmCall"
+              checked
+              required
+              class="mt-1 w-4 h-4"
+            />
+            <label for="confirmCall" class="text-sm flex-1">
+              Tôi đồng ý sẽ nhận cuộc gọi để xác nhận đơn hàng
+              <span class="text-xs text-gray-500 block mt-1"
+                >Chúng tôi sẽ liên lạc để xác nhận đơn hàng</span
+              >
+            </label>
+          </div>
+          <div
+            id="orderSummary"
+            class="text-sm bg-[#d5cab7] rounded-lg p-4 relative"
+          ></div>
+          <div class="pt-2">
+            <button
+              type="submit"
+              class="bg-coffee-dark text-white w-full py-4 rounded-lg font-bold text-base hover:bg-opacity-90 transition"
+            >
+              Đặt đơn - Chờ cuộc gọi
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal items-center justify-center">
+      <div
+        class="bg-white rounded-2xl w-full max-w-sm mx-4 p-8 text-center slide-up"
+      >
+        <div
+          class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4"
+        >
+          <svg
+            class="w-10 h-10 text-green-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="3"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold mb-2">Đã đặt đơn!</h2>
+        <p class="text-lg font-semibold text-coffee-accent mb-1">
+          Đơn hàng #<span id="orderId"></span>
+        </p>
+        <p class="text-sm text-gray-600 mb-4">Giao: <span id="eta"></span></p>
+        <p class="text-sm font-medium mb-6">
+          Shop sẽ liên hệ với bạn trong vòng 10 phút
+        </p>
+        <div class="space-y-2">
+          <button
+            id="reorderSuccess"
+            class="bg-coffee-dark text-white w-full py-3 rounded-lg font-medium hover:bg-opacity-90 transition"
+          >
+            Đặt đơn khác
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      id="loader"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-gray-100 bg-opacity-50 hidden"
+    >
+      <div
+        class="w-10 h-10 border-4 border-coffee-dark border-t-transparent rounded-full animate-spin"
+      ></div>
+    </div>
+    <script src="./common.js"></script>
+    <script src="./localstorage.js"></script>
+    <script src="./http.js" defer></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

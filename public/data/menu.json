@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "name": "Đen",
+    "price": 13000,
+    "icon": "☕",
+    "popular": true
+  },
+  { "id": 2, "name": "Nâu", "price": 15000, "icon": "🥛", "popular": true },
+  {
+    "id": 3,
+    "name": "Gừng mật ong",
+    "price": 20000,
+    "icon": "🍯"
+  },
+  { "id": 4, "name": "Latte", "price": 25000, "icon": "☕" },
+  {
+    "id": 5,
+    "name": "Combo Tuần - Đen",
+    "price": 60000,
+    "icon": "📅",
+    "description": "5 ly Đen",
+    "packageType": "week"
+  },
+  {
+    "id": 6,
+    "name": "Combo Tháng - Đen",
+    "price": 220000,
+    "icon": "📅",
+    "description": "20 ly Đen",
+    "packageType": "month"
+  }
+]
