@@ -268,10 +268,10 @@ document
       const response = await callApiCreateOrder({ userData, cart })
 
       const timeSlotVal = timeSlot.value
-      const eta = timeSlotVal === "asap" ? "15-30 phút" : timeSlotVal
+      const etaVal = timeSlotVal === "asap" ? "15-30 phút" : timeSlotVal
 
       orderId.textContent = response?.data?.id ?? 0
-      eta.textContent = eta
+      eta.textContent = etaVal
 
       checkoutModal.classList.remove("active")
       pageLoader.classList.add("hidden")
