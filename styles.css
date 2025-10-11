@@ -1,6 +1,9 @@
 * {
   -webkit-tap-highlight-color: transparent;
 }
+html {
+  touch-action: manipulation;
+}
 body {
   background: #f6efe8;
 }

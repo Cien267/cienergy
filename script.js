@@ -50,7 +50,7 @@ function renderMenu() {
   menuListContainer.innerHTML = menuItems
     .map(
       (item) => `
-        <div class="bg-white rounded-lg p-3 flex items-center gap-3 border-2 border-solid border-gray-100 shadow-lg" id="menuItem-${
+        <div class="bg-white rounded-lg p-3 flex items-center gap-3 border border-solid border-gray-100 shadow-lg" id="menuItem-${
           item.id
         }">
           <div class="text-3xl">${item.icon}</div>
@@ -70,7 +70,7 @@ function renderMenu() {
               ? '<span class="text-xs text-cf-darkest font-medium bg-yellow-200 px-2 py-1 rounded">Bán chạy</span>'
               : ""
           }
-          <button class="add-btn w-10 h-10 rounded-full bg-white border-4 border-solid active:scale-105 ${getAddButtonStyleByTemp(
+          <button class="add-btn w-10 h-10 rounded-full bg-white border-2 border-solid active:scale-105 ${getAddButtonStyleByTemp(
             currentTemp
           )} flex items-center justify-center text-2xl pb-0.5 font-bold" data-id="${
         item.id
@@ -320,6 +320,13 @@ document
       console.error("Error creating order:", error)
     }
   })
+
+document.getElementById("checkoutForm").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault()
+    e.target.blur()
+  }
+})
 
 reorderSuccessBtn.addEventListener("click", () => {
   successModal.classList.remove("active")
