@@ -1,3 +1,13 @@
+function isToday(date) {
+  const now = new Date()
+  const target = new Date(date)
+  return (
+    target.getDate() === now.getDate() &&
+    target.getMonth() === now.getMonth() &&
+    target.getFullYear() === now.getFullYear()
+  )
+}
+
 function renderTempLabel(temp) {
   switch (temp) {
     case "hot":
@@ -98,7 +108,6 @@ function displayAddingAnimation(itemId) {
   }, 1000)
 
   // bouncing cart animation
-  const iconCart = document.getElementById("iconCart")
   iconCart.classList.add("animate-bounce")
   setTimeout(() => {
     iconCart.classList.remove("animate-bounce")

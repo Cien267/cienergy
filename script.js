@@ -31,6 +31,11 @@ const showCartBtn = document.getElementById("showCart")
 const cartModal = document.getElementById("cartModal")
 const closeCartBtn = document.getElementById("closeCart")
 const emptyCartMsg = document.getElementById("emptyCart")
+const sectionCombo = document.getElementById("sectionCombo")
+const comboList = document.getElementById("comboList")
+const scrollIcon = document.getElementById("scrollIcon")
+const iconCart = document.getElementById("iconCart")
+const detailCartIconCart = document.getElementById("detailCartIconCart")
 
 function updateDeliveryTimeNote() {
   deliveryTimeNoteValue = getDeliveryTimeNote(timeSlots)
@@ -43,11 +48,13 @@ function loadMenu() {
     .then((data) => {
       menuItems = data
       renderMenu()
+      renderComboMenu()
     })
 }
 
 function renderMenu() {
   menuListContainer.innerHTML = menuItems
+    .filter((item) => !item.isCombo)
     .map(
       (item) => `
         <div class="bg-white rounded-lg p-3 flex items-center gap-3 border border-solid border-gray-100 shadow-lg" id="menuItem-${
@@ -91,6 +98,55 @@ function renderMenu() {
   })
 }
 
+function renderComboMenu() {
+  if (userData.orderTimes && userData.orderTimes >= 3) {
+    sectionCombo.classList.remove("hidden")
+    comboList.innerHTML = menuItems
+      .filter((item) => item.isCombo)
+      .map(
+        (item) => `
+        <div class="bg-white rounded-lg p-3 flex items-center gap-3 border border-solid border-gray-100 shadow-lg" id="menuItem-${
+          item.id
+        }">
+          <div class="text-3xl">${item.icon}</div>
+          <div class="flex-1">
+            <div class="font-semibold text-base">${item.name}</div>
+            ${
+              item.description
+                ? `<div class="text-xs text-gray-500 mb-1">${item.description}</div>`
+                : ""
+            }
+            <div class="text-sm font-bold text-sky-700">${(
+              item.price / 1000
+            ).toFixed(0)}k</div>
+          </div>
+          ${
+            item.popular
+              ? '<span class="text-xs text-cf-darkest font-medium bg-yellow-200 px-2 py-1 rounded">Bán chạy</span>'
+              : ""
+          }
+          <button class="add-btn w-10 h-10 rounded-full bg-white border-2 border-solid active:scale-105 ${getAddButtonStyleByTemp(
+            currentTemp
+          )} flex items-center justify-center text-2xl pb-0.5 font-bold" data-id="${
+          item.id
+        }" aria-label="Add ${item.name}">
+            +
+          </button>
+        </div>
+      `
+      )
+      .join("")
+
+    document.querySelectorAll(".add-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = parseInt(btn.dataset.id)
+        addToCart(id)
+        if (navigator.vibrate) navigator.vibrate(10)
+      })
+    })
+  }
+}
+
 function addToCart(itemId) {
   displayAddingAnimation(itemId)
 
@@ -117,7 +173,7 @@ function updateCart() {
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0)
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0)
   const cartSummaryData = `
-  ${totalItems} cốc • <span class="font-bold text-sky-700">
+  ${totalItems} món • <span class="font-bold text-sky-700">
     ${(totalPrice / 1000).toFixed(0)}k
   </span>
 `
@@ -131,12 +187,17 @@ function updateCart() {
     menuCartDivider.classList.remove("hidden")
     renderCartItems()
     emptyCartMsg.classList.add("hidden")
+    iconCart.style.fill = "#A08963"
+    detailCartIconCart.style.fill = "#A08963"
   } else {
     bottomMiniCart.classList.add("hidden")
     menuCartDivider.classList.add("hidden")
     cartModal.classList.remove("active")
     emptyCartMsg.classList.remove("hidden")
+    iconCart.style.fill = "none"
+    detailCartIconCart.style.fill = "#A08963"
   }
+  saveCartData()
 }
 
 function renderCartItems() {
@@ -217,7 +278,7 @@ checkoutBtn.addEventListener("click", () => {
   const describeOrdersText = describeOrders(cart)
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0)
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0)
-  orderSummary.innerHTML = `${describeOrdersText}. <br/><span class="font-bold">Tổng: ${totalItems} cốc • ${(
+  orderSummary.innerHTML = `${describeOrdersText}. <br/><span class="font-bold">Tổng: ${totalItems} món • ${(
     totalPrice / 1000
   ).toFixed(
     0
@@ -229,7 +290,7 @@ detailCartCheckoutBtn.addEventListener("click", () => {
   const describeOrdersText = describeOrders(cart)
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0)
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0)
-  orderSummary.innerHTML = `${describeOrdersText}. <br/><span class="font-bold">Tổng: ${totalItems} cốc • ${(
+  orderSummary.innerHTML = `${describeOrdersText}. <br/><span class="font-bold">Tổng: ${totalItems} món • ${(
     totalPrice / 1000
   ).toFixed(
     0
@@ -288,6 +349,7 @@ document
       phone: phoneInput.value,
       name: nameInput.value,
       address: addressInput.value,
+      ...userData,
     }
 
     if (!isValidPhone(userData.phone)) {
@@ -332,7 +394,8 @@ reorderSuccessBtn.addEventListener("click", () => {
   successModal.classList.remove("active")
 })
 
-loadUserData()
 loadMenu()
+loadUserData()
+loadCartData()
 updateCart()
 updateDeliveryTimeNote()
