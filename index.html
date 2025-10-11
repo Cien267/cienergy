@@ -141,39 +141,19 @@
     </div>
 
     <!-- Menu Items -->
-    <div id="menuList" class="px-4 py-3 space-y-2 max-w-xl mx-auto">
+    <div id="menuList" class="px-4 py-3 space-y-2 max-w-xl mx-auto mb-10">
       <!-- Menu items will be injected here -->
-    </div>
-
-    <div
-      id="divider"
-      class="w-full border-2 border border-solid border-gray-300 h-1 border-dashed mx-auto max-w-2xl my-6 hidden"
-    ></div>
-
-    <!-- Mini Cart -->
-    <div class="px-4 mb-8">
-      <div
-        id="miniCart"
-        class="mx-auto mt-3 bg-white rounded-lg px-4 py-3 shadow-sm hidden max-w-xl"
-      >
-        <div class="flex items-center justify-between mb-3">
-          <h3 class="font-bold text-base">Đơn hàng của bạn</h3>
-          <button
-            id="clearCart"
-            class="p-4 text-xs text-gray-500 font-medium hover:bg-gray-200 rounded-lg"
-          >
-            Xóa
-          </button>
-        </div>
-        <div id="cartItems" class="space-y-4"></div>
-      </div>
     </div>
 
     <!-- Sticky Cart Bar -->
     <div class="fixed bottom-0 left-0 right-0 bg-white shadow-custom z-40">
-      <div class="flex items-center justify-between px-4 py-3 max-w-xl mx-auto">
-        <div class="flex items-center gap-2 text-sm">
+      <div class="flex items-center justify-between px-4 py-4 max-w-xl mx-auto">
+        <div
+          id="showCart"
+          class="flex items-center gap-2 text-sm cursor-pointer p-3 rounded-lg border hover:bg-gray-100"
+        >
           <svg
+            id="iconCart"
             class="w-5 h-5"
             fill="none"
             stroke="currentColor"
@@ -198,12 +178,73 @@
       </div>
     </div>
 
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal items-end md:items-center">
+      <div class="bg-white rounded-t-2xl w-full max-w-lg mx-auto p-6 slide-up">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold text-cf-darkest">Đơn hàng của bạn</h2>
+          <button id="closeCart" class="text-3xl leading-none text-gray-400">
+            &times;
+          </button>
+        </div>
+        <!-- Mini Cart -->
+        <div id="emptyCart" class="text-sm text-gray-400">
+          Giỏ hàng trống. Hãy chọn đồ uống.
+        </div>
+        <div class="px-4 mb-8">
+          <div
+            id="miniCart"
+            class="mx-auto mt-3 bg-white rounded-lg py-3 hidden max-w-xl max-h-[60vh]"
+          >
+            <div class="flex items-center justify-between mb-1">
+              <div class="flex items-center gap-2 text-sm cursor-pointer">
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+                <span id="detailCartSummary" class="font-medium text-lg"
+                  >0 cốc</span
+                >
+              </div>
+              <button
+                id="clearCart"
+                class="p-3 text-xs text-gray-500 font-medium hover:bg-gray-200 rounded-lg"
+              >
+                Xóa
+              </button>
+            </div>
+            <div
+              id="divider"
+              class="w-full border-2 border-t border-b-0 border-r-0 border-l-0 border-solid border-gray-300 h-1 border-dashed mx-auto max-w-2xl mb-3"
+            ></div>
+            <div
+              id="cartItems"
+              class="space-y-4 overflow-y-auto overflow-x-hidden max-h-[50vh] px-3"
+            ></div>
+          </div>
+        </div>
+        <button
+          id="detailCartCheckoutBtn"
+          class="bg-cf-darkest w-full text-white px-6 py-2 rounded-lg font-semibold text-base disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled
+        >
+          Đặt đơn
+        </button>
+      </div>
+    </div>
+
     <!-- Checkout Modal -->
     <div id="checkoutModal" class="modal items-end md:items-center">
-      <div
-        class="bg-white rounded-t-2xl w-full max-w-lg mx-auto p-6 slide-up"
-        style="max-height: 100vh; overflow-y: auto"
-      >
+      <div class="bg-white rounded-t-2xl w-full max-w-lg mx-auto p-6 slide-up">
         <div class="flex items-center justify-between mb-4">
           <h2 class="text-xl font-bold text-cf-darkest">Thông tin giao hàng</h2>
           <button
@@ -215,105 +256,109 @@
         </div>
 
         <form id="checkoutForm" class="space-y-4">
-          <div>
-            <label class="block text-sm font-medium mb-1.5"
-              >SĐT <span class="text-red-500">*</span></label
-            >
-            <input
-              type="tel"
-              id="phone"
-              inputmode="tel"
-              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-coffee-accent"
-              placeholder="0912345678"
-              required
-            />
-            <p id="phoneError" class="text-sm text-red-500 hidden">
-              Số điện thoại không hợp lệ!
-            </p>
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium mb-1.5"
-              >Tên <span class="text-red-500">*</span></label
-            >
-            <input
-              type="text"
-              id="name"
-              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-coffee-accent capitalize"
-              placeholder="Nguyen Van A"
-              required
-            />
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium mb-1.5"
-              >Địa chỉ <span class="text-red-500">*</span></label
-            >
-            <input
-              type="text"
-              id="address"
-              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-coffee-accent"
-              placeholder="Số nhà, tên đường, phường..."
-              required
-            />
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium mb-1.5"
-              >Thời gian giao hàng
-              <span
-                id="deliveryTimeNote"
-                class="text-sm font-normal text-gray-500"
-              ></span
-            ></label>
-            <select
-              id="timeSlot"
-              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-coffee-accent"
-            >
-              <option value="asap">ASAP (15-30 phút)</option>
-              <option value="06:00">06:00 AM</option>
-              <option value="06:30">06:30 AM</option>
-              <option value="07:00">07:00 AM</option>
-              <option value="07:30">07:30 AM</option>
-              <option value="08:00">08:00 AM</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium mb-1.5"
-              >Ghi chú
-              <span class="text-sm font-normal text-gray-500"
-                >(Tùy chọn)</span
-              ></label
-            >
-            <input
-              type="text"
-              id="notes"
-              maxlength="50"
-              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-coffee-accent"
-              placeholder="vd: ít sữa, nhiều đá..."
-            />
-          </div>
-
-          <div class="flex items-start gap-2 py-2">
-            <input
-              type="checkbox"
-              id="confirmCall"
-              checked
-              required
-              class="mt-1 w-4 h-4"
-            />
-            <label for="confirmCall" class="text-sm flex-1">
-              Tôi đồng ý sẽ nhận cuộc gọi để xác nhận đơn hàng
-              <span class="text-xs text-gray-500 block mt-1"
-                >Chúng tôi sẽ liên lạc để xác nhận đơn hàng</span
-              >
-            </label>
-          </div>
           <div
-            id="orderSummary"
-            class="text-sm bg-[#d5cab7] rounded-lg p-4 relative"
-          ></div>
+            class="overflow-y-auto overflow-x-hidden max-h-[60vh] space-y-4 px-3"
+          >
+            <div>
+              <label class="block text-sm font-medium mb-1.5"
+                >SĐT <span class="text-red-500">*</span></label
+              >
+              <input
+                type="tel"
+                id="phone"
+                inputmode="tel"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-coffee-accent"
+                placeholder="0912345678"
+                required
+              />
+              <p id="phoneError" class="text-sm text-red-500 hidden">
+                Số điện thoại không hợp lệ!
+              </p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-1.5"
+                >Tên <span class="text-red-500">*</span></label
+              >
+              <input
+                type="text"
+                id="name"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-coffee-accent capitalize"
+                placeholder="Nguyen Van A"
+                required
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-1.5"
+                >Địa chỉ <span class="text-red-500">*</span></label
+              >
+              <input
+                type="text"
+                id="address"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-coffee-accent"
+                placeholder="Số nhà, tên đường, phường..."
+                required
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-1.5"
+                >Thời gian giao hàng
+                <span
+                  id="deliveryTimeNote"
+                  class="text-sm font-normal text-gray-500"
+                ></span
+              ></label>
+              <select
+                id="timeSlot"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-coffee-accent"
+              >
+                <option value="asap">ASAP (15-30 phút)</option>
+                <option value="06:00">06:00 AM</option>
+                <option value="06:30">06:30 AM</option>
+                <option value="07:00">07:00 AM</option>
+                <option value="07:30">07:30 AM</option>
+                <option value="08:00">08:00 AM</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-1.5"
+                >Ghi chú
+                <span class="text-sm font-normal text-gray-500"
+                  >(Tùy chọn)</span
+                ></label
+              >
+              <input
+                type="text"
+                id="notes"
+                maxlength="50"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-coffee-accent"
+                placeholder="vd: ít sữa, nhiều đá..."
+              />
+            </div>
+
+            <div class="flex items-start gap-2 py-2">
+              <input
+                type="checkbox"
+                id="confirmCall"
+                checked
+                required
+                class="mt-1 w-4 h-4"
+              />
+              <label for="confirmCall" class="text-sm flex-1">
+                Tôi đồng ý sẽ nhận cuộc gọi để xác nhận đơn hàng
+                <span class="text-xs text-gray-500 block mt-1"
+                  >Chúng tôi sẽ liên lạc để xác nhận đơn hàng</span
+                >
+              </label>
+            </div>
+            <div
+              id="orderSummary"
+              class="text-sm bg-[#d5cab7] rounded-lg p-4 relative"
+            ></div>
+          </div>
           <div class="pt-2">
             <button
               type="submit"

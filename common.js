@@ -75,6 +75,7 @@ function describeOrders(orders) {
 }
 
 function displayAddingAnimation(itemId) {
+  // floating text animation
   const itemElem = document.getElementById(`menuItem-${itemId}`)
   if (!itemElem) return
   const btn = itemElem.querySelector(".add-btn")
@@ -95,4 +96,23 @@ function displayAddingAnimation(itemId) {
   setTimeout(() => {
     floatingText.remove()
   }, 1000)
+
+  // bouncing cart animation
+  const iconCart = document.getElementById("iconCart")
+  iconCart.classList.add("animate-bounce")
+  setTimeout(() => {
+    iconCart.classList.remove("animate-bounce")
+  }, 1000)
+}
+
+function getDeliveryTimeNote(timeSlots) {
+  const now = new Date()
+  const currentHour = now.getHours()
+  if (currentHour > 8) {
+    timeSlots.querySelectorAll("option").forEach((opt) => {
+      if (opt.value === "asap") timeSlots.remove(opt)
+    })
+    return "(ngày mai)"
+  }
+  return "(hôm nay)"
 }

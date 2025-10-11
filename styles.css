@@ -4,6 +4,26 @@
 body {
   background: #f6efe8;
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+  -webkit-overflow-scrolling: touch;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #dbdbdb;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #dbdbdb;
+}
+
+input[type="checkbox"] {
+  accent-color: #a08963; /* Modern browsers only */
+}
+
 .modal {
   position: fixed;
   inset: 0;

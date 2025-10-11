@@ -3,12 +3,15 @@ let currentTemp = "hot"
 let currentQty = 1
 let userData = {}
 let menuItems = []
+let deliveryTimeNoteValue = "(hôm nay)"
 const menuListContainer = document.getElementById("menuList")
 const cartItemsContainer = document.getElementById("cartItems")
 const checkoutModal = document.getElementById("checkoutModal")
 const timeSlots = document.getElementById("timeSlot")
 const cartSummary = document.getElementById("cartSummary")
+const detailCartSummary = document.getElementById("detailCartSummary")
 const checkoutBtn = document.getElementById("checkoutBtn")
+const detailCartCheckoutBtn = document.getElementById("detailCartCheckoutBtn")
 const toggleBtns = document.querySelectorAll(".toggle-btn")
 const orderSummary = document.getElementById("orderSummary")
 const closeCheckoutBtn = document.getElementById("closeCheckout")
@@ -24,17 +27,14 @@ const reorderSuccessBtn = document.getElementById("reorderSuccess")
 const bottomMiniCart = document.getElementById("miniCart")
 const menuCartDivider = document.getElementById("divider")
 const successModal = document.getElementById("successModal")
+const showCartBtn = document.getElementById("showCart")
+const cartModal = document.getElementById("cartModal")
+const closeCartBtn = document.getElementById("closeCart")
+const emptyCartMsg = document.getElementById("emptyCart")
 
 function updateDeliveryTimeNote() {
-  const deliveryTimeNote = document.getElementById("deliveryTimeNote")
-  const now = new Date()
-  const currentHour = now.getHours()
-  if (currentHour > 8) {
-    deliveryTimeNote.textContent = "(hôm sau)"
-    timeSlots.querySelectorAll("option").forEach((opt) => {
-      if (opt.value === "asap") timeSlots.remove(opt)
-    })
-  } else deliveryTimeNote.textContent = "(hôm nay)"
+  deliveryTimeNoteValue = getDeliveryTimeNote(timeSlots)
+  deliveryTimeNote.textContent = deliveryTimeNoteValue
 }
 
 function loadMenu() {
@@ -72,7 +72,7 @@ function renderMenu() {
           }
           <button class="add-btn w-10 h-10 rounded-full bg-white border-4 border-solid active:scale-105 ${getAddButtonStyleByTemp(
             currentTemp
-          )} flex items-center justify-center text-2xl pb-1 font-bold" data-id="${
+          )} flex items-center justify-center text-2xl pb-0.5 font-bold" data-id="${
         item.id
       }" aria-label="Add ${item.name}">
             +
@@ -116,21 +116,26 @@ function addToCart(itemId) {
 function updateCart() {
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0)
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0)
-
-  cartSummary.innerHTML = `
+  const cartSummaryData = `
   ${totalItems} cốc • <span class="font-bold text-sky-700">
     ${(totalPrice / 1000).toFixed(0)}k
   </span>
 `
+  cartSummary.innerHTML = cartSummaryData
+  detailCartSummary.innerHTML = cartSummaryData
   checkoutBtn.disabled = cart.length === 0
+  detailCartCheckoutBtn.disabled = cart.length === 0
 
   if (cart.length > 0) {
     bottomMiniCart.classList.remove("hidden")
     menuCartDivider.classList.remove("hidden")
     renderCartItems()
+    emptyCartMsg.classList.add("hidden")
   } else {
     bottomMiniCart.classList.add("hidden")
     menuCartDivider.classList.add("hidden")
+    cartModal.classList.remove("active")
+    emptyCartMsg.classList.remove("hidden")
   }
 }
 
@@ -214,8 +219,37 @@ checkoutBtn.addEventListener("click", () => {
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0)
   orderSummary.innerHTML = `${describeOrdersText}. <br/><span class="font-bold">Tổng: ${totalItems} cốc • ${(
     totalPrice / 1000
-  ).toFixed(0)}k</span> <span class="absolute -left-3 -top-3 text-xl">📌</span>`
+  ).toFixed(
+    0
+  )}k</span> <span class="absolute -right-3 -top-3 text-xl">📌</span>`
   checkoutModal.classList.add("active")
+})
+
+detailCartCheckoutBtn.addEventListener("click", () => {
+  const describeOrdersText = describeOrders(cart)
+  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0)
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0)
+  orderSummary.innerHTML = `${describeOrdersText}. <br/><span class="font-bold">Tổng: ${totalItems} cốc • ${(
+    totalPrice / 1000
+  ).toFixed(
+    0
+  )}k</span> <span class="absolute -right-3 -top-3 text-xl">📌</span>`
+  checkoutModal.classList.add("active")
+  cartModal.classList.remove("active")
+})
+
+showCartBtn.addEventListener("click", () => {
+  cartModal.classList.add("active")
+})
+
+closeCartBtn.addEventListener("click", () => {
+  cartModal.classList.remove("active")
+})
+
+cartModal.addEventListener("click", (e) => {
+  if (e.target === cartModal) {
+    cartModal.classList.remove("active")
+  }
 })
 
 closeCheckoutBtn.addEventListener("click", () => {
@@ -269,9 +303,9 @@ document
 
       const timeSlotVal = timeSlot.value
       const etaVal = timeSlotVal === "asap" ? "15-30 phút" : timeSlotVal
+      eta.textContent = `${etaVal} ${deliveryTimeNoteValue}`
 
       orderId.textContent = response?.data?.id ?? 0
-      eta.textContent = etaVal
 
       checkoutModal.classList.remove("active")
       pageLoader.classList.add("hidden")
