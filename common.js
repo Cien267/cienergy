@@ -125,3 +125,22 @@ function getDeliveryTimeNote(timeSlots) {
   }
   return "(hôm nay)"
 }
+
+function getDeliveryTimeDB() {
+  const now = new Date()
+  const tomorrow = new Date()
+  tomorrow.setDate(now.getDate() + 1)
+
+  const formattedToday = now.toLocaleDateString("vi-VN")
+  const formattedTomorrow = tomorrow.toLocaleDateString("vi-VN")
+
+  const timeSlotVal = timeSlot.value
+  const deliveryTime =
+    deliveryTimeNoteValue === "(hôm nay)"
+      ? timeSlotVal === "asap"
+        ? "15-30 phút"
+        : `${timeSlotVal} ${formattedToday}`
+      : `${timeSlotVal} ${formattedTomorrow}`
+
+  return deliveryTime
+}

@@ -42,13 +42,20 @@ async function callApiCreateOrder({ userData, cart, note }) {
     } else {
       await supabaseInstance
         .from("users")
-        .update({ orderTimes: userData.orderTimes })
+        .update({ orderTimes: userData.orderTimes + 1 })
         .eq("id", user.id)
       userId = user.id
     }
     const { data: order, error } = await supabaseInstance
       .from("orders")
-      .insert([{ user_id: userId, cart: JSON.stringify(cart), note }])
+      .insert([
+        {
+          user_id: userId,
+          cart: JSON.stringify(cart),
+          note,
+          delivery_time: getDeliveryTimeDB(),
+        },
+      ])
       .select()
       .single()
     if (error) {
