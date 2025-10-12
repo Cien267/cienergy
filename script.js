@@ -36,6 +36,7 @@ const comboList = document.getElementById("comboList")
 const scrollIcon = document.getElementById("scrollIcon")
 const iconCart = document.getElementById("iconCart")
 const detailCartIconCart = document.getElementById("detailCartIconCart")
+const noteInput = document.getElementById("notes")
 
 function updateDeliveryTimeNote() {
   deliveryTimeNoteValue = getDeliveryTimeNote(timeSlots)
@@ -346,11 +347,13 @@ document
     phoneInput.classList.remove("border-red-500")
 
     userData = {
+      ...userData,
       phone: phoneInput.value,
       name: nameInput.value,
       address: addressInput.value,
-      ...userData,
     }
+
+    const note = noteInput.value
 
     if (!isValidPhone(userData.phone)) {
       phoneInput.classList.add("border-red-500")
@@ -361,7 +364,7 @@ document
     try {
       pageLoader.classList.remove("hidden")
       saveUserData()
-      const order = await callApiCreateOrder({ userData, cart })
+      const order = await callApiCreateOrder({ userData, cart, note })
 
       const timeSlotVal = timeSlot.value
       const etaVal = timeSlotVal === "asap" ? "15-30 phút" : timeSlotVal

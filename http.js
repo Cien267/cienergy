@@ -7,12 +7,13 @@ const supabaseInstance = window.supabase.createClient(
   SUPABASE_KEY
 )
 
-async function getUser(userData) {
+async function callApiCreateOrder({ userData, cart, note }) {
   const { data: user, error } = await supabaseInstance
     .from("users")
     .select("*")
     .eq("name", userData.name)
     .eq("phone", userData.phone)
+    .eq("address", userData.address)
     .maybeSingle()
 
   if (error) {
@@ -47,7 +48,7 @@ async function getUser(userData) {
     }
     const { data: order, error } = await supabaseInstance
       .from("orders")
-      .insert([{ user_id: userId, cart: JSON.stringify(cart) }])
+      .insert([{ user_id: userId, cart: JSON.stringify(cart), note }])
       .select()
       .single()
     if (error) {
@@ -72,8 +73,4 @@ async function getUser(userData) {
     }
     return order
   }
-}
-
-async function callApiCreateOrder({ userData, cart }) {
-  return await getUser(userData)
 }
