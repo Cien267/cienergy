@@ -361,13 +361,13 @@ document
     try {
       pageLoader.classList.remove("hidden")
       saveUserData()
-      const response = await callApiCreateOrder({ userData, cart })
+      const order = await callApiCreateOrder({ userData, cart })
 
       const timeSlotVal = timeSlot.value
       const etaVal = timeSlotVal === "asap" ? "15-30 phút" : timeSlotVal
       eta.textContent = `${etaVal} ${deliveryTimeNoteValue}`
 
-      orderId.textContent = response?.data?.id ?? 0
+      orderId.textContent = order?.id ?? 0
 
       checkoutModal.classList.remove("active")
       pageLoader.classList.add("hidden")
