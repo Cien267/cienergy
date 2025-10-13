@@ -114,16 +114,25 @@ function displayAddingAnimation(itemId) {
   }, 1000)
 }
 
-function getDeliveryTimeNote(timeSlots) {
+function getDeliveryTimeNote() {
   const now = new Date()
-  const currentHour = now.getHours()
-  if (currentHour > 8) {
+  const currentHour = now.getHours() + now.getMinutes() / 60
+
+  if (currentHour >= 8) {
     timeSlots.querySelectorAll("option").forEach((opt) => {
-      if (opt.value === "asap") timeSlots.remove(opt)
+      if (opt.value === "asap") opt.remove()
     })
     return "(ngày mai)"
+  } else {
+    timeSlots.querySelectorAll("option").forEach((opt) => {
+      timeSlots.querySelectorAll("option").forEach((opt) => {
+        const [h, m] = opt.value.split(":").map(Number)
+        const hour = h + m / 60 || 0
+        if (opt.value !== "asap" && hour <= currentHour) opt.remove()
+      })
+    })
+    return "(hôm nay)"
   }
-  return "(hôm nay)"
 }
 
 function getDeliveryTimeDB() {

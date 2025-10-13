@@ -2,73 +2,82 @@
   {
     "id": 1,
     "name": "Đen",
-    "price": 13000,
+    "price": 0,
+    "originalPrice": 13000,
     "icon": "☕",
     "popular": true
   },
-  { "id": 2, "name": "Nâu", "price": 15000, "icon": "🥛", "popular": true },
+  {
+    "id": 2,
+    "name": "Nâu",
+    "price": 0,
+    "originalPrice": 15000,
+    "icon": "🥛",
+    "popular": true
+  },
   {
     "id": 3,
     "name": "Bạc sỉu",
-    "price": 20000,
+    "price": 0,
+    "originalPrice": 20000,
     "icon": "☕",
     "description": "Cho người nặng tình"
   },
   {
     "id": 4,
-    "name": "Gừng mật ong",
-    "price": 20000,
-    "icon": "🍯"
-  },
-  {
-    "id": 5,
     "name": "Combo Tuần - Đen",
     "price": 60000,
+    "originalPrice": 65000,
     "icon": "🗓️",
     "description": "5 ly Đen",
     "packageType": "week",
     "isCombo": true
   },
   {
-    "id": 6,
+    "id": 5,
     "name": "Combo Tháng - Đen",
-    "price": 220000,
+    "price": 240000,
+    "originalPrice": 260000,
     "icon": "🗓️",
     "description": "20 ly Đen",
     "packageType": "month",
     "isCombo": true
   },
   {
-    "id": 7,
+    "id": 6,
     "name": "Combo Tuần - Nâu",
     "price": 70000,
+    "originalPrice": 75000,
     "icon": "🗓️",
     "description": "5 ly Nâu",
     "packageType": "week",
     "isCombo": true
   },
   {
-    "id": 8,
+    "id": 7,
     "name": "Combo Tháng - Nâu",
     "price": 280000,
+    "originalPrice": 300000,
     "icon": "🗓️",
     "description": "20 ly Nâu",
     "packageType": "month",
     "isCombo": true
   },
   {
-    "id": 9,
+    "id": 8,
     "name": "Combo Tuần - Bạc Sỉu",
     "price": 95000,
+    "originalPrice": 100000,
     "icon": "🗓️",
     "description": "5 ly Bạc Sỉu",
     "packageType": "week",
     "isCombo": true
   },
   {
-    "id": 10,
+    "id": 9,
     "name": "Combo Tháng - Bạc Sỉu",
     "price": 380000,
+    "originalPrice": 400000,
     "icon": "🗓️",
     "description": "20 ly Bạc Sỉu, bạn nặng tình quá",
     "packageType": "month",

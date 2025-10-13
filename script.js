@@ -39,7 +39,7 @@ const detailCartIconCart = document.getElementById("detailCartIconCart")
 const noteInput = document.getElementById("notes")
 
 function updateDeliveryTimeNote() {
-  deliveryTimeNoteValue = getDeliveryTimeNote(timeSlots)
+  deliveryTimeNoteValue = getDeliveryTimeNote()
   deliveryTimeNote.textContent = deliveryTimeNoteValue
 }
 
@@ -69,9 +69,22 @@ function renderMenu() {
                 ? `<div class="text-xs text-gray-500 mb-1">${item.description}</div>`
                 : ""
             }
-            <div class="text-sm font-bold text-sky-700">${(
-              item.price / 1000
-            ).toFixed(0)}k</div>
+            ${
+              item.originalPrice && item.originalPrice > item.price
+                ? `<span class="text-sm text-gray-500 font-normal line-through">${(
+                    item.originalPrice / 1000
+                  ).toFixed(0)}k</span>`
+                : ""
+            }
+              ${
+                item.price > 0
+                  ? `<span class="text-sm font-bold ${
+                      item.originalPrice && item.originalPrice > item.price
+                        ? "text-orange-600"
+                        : "text-sky-700"
+                    }">${(item.price / 1000).toFixed(0)}k</span>`
+                  : `<span class="text-sm font-bold text-sky-500">Miễn phí</span>`
+              }
           </div>
           ${
             item.popular
@@ -117,16 +130,29 @@ function renderComboMenu() {
                 ? `<div class="text-xs text-gray-500 mb-1">${item.description}</div>`
                 : ""
             }
-            <div class="text-sm font-bold text-sky-700">${(
-              item.price / 1000
-            ).toFixed(0)}k</div>
+              ${
+                item.originalPrice && item.originalPrice > item.price
+                  ? `<span class="text-sm text-gray-500 font-normal line-through">${(
+                      item.originalPrice / 1000
+                    ).toFixed(0)}k</span>`
+                  : ""
+              }
+              ${
+                item.price > 0
+                  ? `<span class="text-sm font-bold ${
+                      item.originalPrice && item.originalPrice > item.price
+                        ? "text-orange-600"
+                        : "text-sky-700"
+                    }">${(item.price / 1000).toFixed(0)}k</span>`
+                  : `<span class="text-sm font-bold text-sky-500">Miễn phí</span>`
+              }
           </div>
           ${
             item.popular
               ? '<span class="text-xs text-cf-darkest font-medium bg-yellow-200 px-2 py-1 rounded">Bán chạy</span>'
               : ""
           }
-          <button class="add-btn w-10 h-10 rounded-full bg-white border-2 border-solid active:scale-105 ${getAddButtonStyleByTemp(
+          <button class="add-btn-combo w-10 h-10 rounded-full bg-white border-2 border-solid active:scale-105 ${getAddButtonStyleByTemp(
             currentTemp
           )} flex items-center justify-center text-2xl pb-0.5 font-bold" data-id="${
           item.id
@@ -138,7 +164,7 @@ function renderComboMenu() {
       )
       .join("")
 
-    document.querySelectorAll(".add-btn").forEach((btn) => {
+    document.querySelectorAll(".add-btn-combo").forEach((btn) => {
       btn.addEventListener("click", () => {
         const id = parseInt(btn.dataset.id)
         addToCart(id)
@@ -163,6 +189,7 @@ function addToCart(itemId) {
       id: itemId,
       name: item.name,
       price: item.price,
+      originalPrice: item.originalPrice,
       temp: currentTemp,
       qty: currentQty,
     })
@@ -221,10 +248,23 @@ function renderCartItems() {
             </div>
           </div>
           <div>
-            <span class="font-medium text-sky-700">${(
-              (item.price * item.qty) /
-              1000
-            ).toFixed(0)}k</span>
+            ${
+              item.originalPrice && item.originalPrice > item.price
+                ? `<span class="text-sm font-normal text-gray-500 line-through">${(
+                    (item.originalPrice * item.qty) /
+                    1000
+                  ).toFixed(0)}k</span>`
+                : ""
+            }
+            ${
+              item.price > 0
+                ? `<span class="font-medium font-bold ${
+                    item.originalPrice && item.originalPrice > item.price
+                      ? "text-orange-600"
+                      : "text-sky-700"
+                  }">${((item.price * item.qty) / 1000).toFixed(0)}k</span>`
+                : `<span class="font-medium font-bold text-sky-500">Miễn phí</span>`
+            }
           </div>
         </div>
       `
