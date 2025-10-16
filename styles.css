@@ -92,14 +92,14 @@ input[type="checkbox"] {
   display: none;
 }
 body {
-  background-image: url("public/images/bg-desktop.png");
+  background-image: url("public/images/bg-desktop.webp");
   background-size: cover;
   background-position: center;
 }
 
 @media (max-width: 768px) {
   body {
-    background-image: url("public/images/bg-mobile.png");
+    background-image: url("public/images/bg-mobile.webp");
   }
 }
 /* end temporary hiding */
