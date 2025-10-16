@@ -85,3 +85,21 @@ input[type="checkbox"] {
     transform: translateY(-80px) scale(0.8);
   }
 }
+
+/* TODO: remove this css when the app is ready to launch */
+/* temporary hiding */
+.temporary-hide-before-launch {
+  display: none;
+}
+body {
+  background-image: url("public/images/bg-desktop.png");
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-image: url("public/images/bg-mobile.png");
+  }
+}
+/* end temporary hiding */
