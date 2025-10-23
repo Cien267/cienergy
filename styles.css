@@ -88,7 +88,7 @@ input[type="checkbox"] {
 
 /* TODO: remove this css when the app is ready to launch */
 /* temporary hiding */
-.temporary-hide-before-launch {
+/* .temporary-hide-before-launch {
   display: none;
 }
 body {
@@ -101,5 +101,5 @@ body {
   body {
     background-image: url("public/images/bg-mobile.webp");
   }
-}
+} */
 /* end temporary hiding */
