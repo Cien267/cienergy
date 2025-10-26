@@ -113,12 +113,10 @@ function renderMenu() {
 }
 
 function renderComboMenu() {
-  if (userData.orderTimes && userData.orderTimes >= 3) {
-    sectionCombo.classList.remove("hidden")
-    comboList.innerHTML = menuItems
-      .filter((item) => item.isCombo)
-      .map(
-        (item) => `
+  comboList.innerHTML = menuItems
+    .filter((item) => item.isCombo)
+    .map(
+      (item) => `
         <div class="bg-white rounded-lg p-3 flex items-center gap-3 border border-solid border-gray-100 shadow-lg" id="menuItem-${
           item.id
         }">
@@ -155,23 +153,22 @@ function renderComboMenu() {
           <button class="add-btn-combo w-10 h-10 rounded-full bg-white border-2 border-solid active:scale-105 ${getAddButtonStyleByTemp(
             currentTemp
           )} flex items-center justify-center text-2xl pb-0.5 font-bold" data-id="${
-          item.id
-        }" aria-label="Add ${item.name}">
+        item.id
+      }" aria-label="Add ${item.name}">
             +
           </button>
         </div>
       `
-      )
-      .join("")
+    )
+    .join("")
 
-    document.querySelectorAll(".add-btn-combo").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const id = parseInt(btn.dataset.id)
-        addToCart(id)
-        if (navigator.vibrate) navigator.vibrate(10)
-      })
+  document.querySelectorAll(".add-btn-combo").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = parseInt(btn.dataset.id)
+      addToCart(id)
+      if (navigator.vibrate) navigator.vibrate(10)
     })
-  }
+  })
 }
 
 function addToCart(itemId) {
@@ -312,6 +309,7 @@ toggleBtns.forEach((btn) => {
     btn.classList.remove("text-cf-darkest")
     currentTemp = btn.dataset.temp
     renderMenu()
+    renderComboMenu()
   })
 })
 
