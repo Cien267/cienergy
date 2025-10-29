@@ -30,6 +30,7 @@ async function callApiCreateOrder({ userData, cart, note }) {
             name: userData.name,
             phone: userData.phone,
             address: userData.address,
+            orderTimes: 1,
           },
         ])
         .select()
