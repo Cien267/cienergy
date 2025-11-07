@@ -88,7 +88,8 @@ function displayAddingAnimation(itemId) {
   // floating text animation
   const itemElem = document.getElementById(`menuItem-${itemId}`)
   if (!itemElem) return
-  const btn = itemElem.querySelector(".add-btn")
+  let btn = itemElem.querySelector(".add-btn")
+  if (!btn) btn = itemElem.querySelector(".add-btn-combo")
   if (!btn) return
   const rect = btn.getBoundingClientRect()
   const x = rect.left + rect.width / 2 + window.scrollX
