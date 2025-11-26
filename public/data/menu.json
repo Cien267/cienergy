@@ -33,14 +33,6 @@
     "description": "Đậm tình miền tây"
   },
   {
-    "id": 5,
-    "name": "Cà phê bơ đậu phộng",
-    "price": 20000,
-    "originalPrice": 20000,
-    "icon": "🥜",
-    "description": "Thơm béo ngậy"
-  },
-  {
     "id": 6,
     "name": "Combo Tuần - Đen",
     "price": 60000,
@@ -119,26 +111,6 @@
     "originalPrice": 400000,
     "icon": "🗓️",
     "description": "20 ly Bạc Sỉu cốt dừa",
-    "packageType": "month",
-    "isCombo": true
-  },
-  {
-    "id": 14,
-    "name": "Combo Tuần - Cà phê bơ đậu phộng",
-    "price": 95000,
-    "originalPrice": 100000,
-    "icon": "🗓️",
-    "description": "5 ly bơ đậu phộng",
-    "packageType": "week",
-    "isCombo": true
-  },
-  {
-    "id": 15,
-    "name": "Combo Tháng - Cà phê bơ đậu phộng",
-    "price": 380000,
-    "originalPrice": 400000,
-    "icon": "🗓️",
-    "description": "20 ly bơ đậu phộng",
     "packageType": "month",
     "isCombo": true
   }
