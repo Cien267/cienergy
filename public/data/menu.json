@@ -16,14 +16,6 @@
     "popular": true
   },
   {
-    "id": 3,
-    "name": "Bạc sỉu",
-    "price": 18000,
-    "originalPrice": 18000,
-    "icon": "☕",
-    "description": "Cho người nặng tình"
-  },
-  {
     "id": 4,
     "name": "Bạc sỉu cốt dừa",
     "price": 20000,
@@ -75,29 +67,9 @@
     "isCombo": true
   },
   {
-    "id": 10,
-    "name": "Combo Tuần - Bạc Sỉu",
-    "price": 85000,
-    "originalPrice": 90000,
-    "icon": "🗓️",
-    "description": "5 ly Bạc Sỉu",
-    "packageType": "week",
-    "isCombo": true
-  },
-  {
-    "id": 11,
-    "name": "Combo Tháng - Bạc Sỉu",
-    "price": 340000,
-    "originalPrice": 360000,
-    "icon": "🗓️",
-    "description": "20 ly Bạc Sỉu, bạn nặng tình quá",
-    "packageType": "month",
-    "isCombo": true
-  },
-  {
     "id": 12,
     "name": "Combo Tuần - Bạc Sỉu cốt dừa",
-    "price": 95000,
+    "price": 90000,
     "originalPrice": 100000,
     "icon": "🗓️",
     "description": "5 ly Bạc Sỉu cốt dừa",
@@ -107,7 +79,7 @@
   {
     "id": 13,
     "name": "Combo Tháng - Bạc Sỉu cốt dừa",
-    "price": 380000,
+    "price": 360000,
     "originalPrice": 400000,
     "icon": "🗓️",
     "description": "20 ly Bạc Sỉu cốt dừa",
